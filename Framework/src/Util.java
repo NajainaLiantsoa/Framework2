@@ -1,53 +1,15 @@
 package etu1847.utils;
 
 import java.io.File;
-import java.lang.reflect.Method;
 import java.net.URL;
 import java.util.HashMap;
 import java.util.Vector;
 import etu1847.annotation.Urls;
 import etu1847.framework.Mapping;
-import etu1847.framework.ModelView;
 
+public class Util {
+    static String context = "framework";
 
-public class Utils {
-
-    // set d'un attribut de nom et de valeur connue
-    public static void setAttribute(String fieldName, String[] fieldValue, Object instance){
-        
-    }
-    
-    // recuperation d'une instance de methode
-    // et son objet appelant
-    // Obsolete a partir du SPRINT 7
-    public static ModelView getModelView(Mapping map) throws Exception{
-        Object mv;
-        try{
-            Class classe = Class.forName(map.getClassName());
-            Method[] methods = classe.getDeclaredMethods();
-            Method methode = null;
-            for(Method courant: methods){
-                //recuperation de la methode 
-                if (courant.getName().equals(map.getMethod())) methode = courant;
-            }
-            // instanciation de l'objet appelant
-            Object instance  = classe.cast(classe.newInstance());
-            
-            // invocation de la methode
-            mv = methode.invoke(instance);
-            if(mv instanceof ModelView == false){
-                throw new Exception("La methode " + map.getMethod()+" de la classe "+map.getClass()+" ne conduit pas a une vue...");
-            }
-
-            return (ModelView)mv;
-        }
-        catch(Exception e){
-            throw e;
-        }
-        
-    }
-    
-                
     // recuperation de toutes les methodes annotees URls
     public static HashMap<String, Mapping> getUrlsAnnotedMethods(Vector<Class<?>> classes){
         java.lang.reflect.Method[] methods;
@@ -128,16 +90,16 @@ public class Utils {
         return classes;
     }
 
-    
-    public static String getPathFromURL(String url, String context){
+
+
+    public static String getPathFromURL(String url){
+        String context = Utils.context;
         String res;
         String[] spliting = url.split(context+"/"); //le but est de recuperer la partie qui vient apres le contexte
-        for (Object o: spliting){
-            System.out.println("Spliting: "+o.toString());
-        }
-        
         if (spliting.length < 2) res = "";    // cas ou on uniquement le contexte dans l'URL
         else res = spliting[1];
-        return res;   
+        return res;       
+        
     }
 }
+
