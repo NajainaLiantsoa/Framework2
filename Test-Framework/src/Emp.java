@@ -1,11 +1,16 @@
 package model.societe;
 
-import etu1847.annotation.Urls;
+import etu1847.annotation.*;
 import etu1847.framework.ModelView;
+import etu1847.framework.FileUpload;
 
 import java.sql.Date;
 import java.util.Vector;
+import java.util.HashMap;
+import java.util.Map;
 
+
+@Scop(isSingle = true)
 public class Emp {
     String nom;
     int age;
@@ -13,23 +18,18 @@ public class Emp {
     Date embauche;
     boolean status;
     float prime;
-
-    public float getNote() {
-        return note;
-    }
-
-    public void setNote(float note) {
-        this.note = note;
-    }
-
-    
+    FileUpload file;
+    static int appels = 0; 
+    HashMap<String, Object> session;
 
     // _ _ _ Constructors _ _ _
 
     
     public Emp(){
-
+        Emp.appels ++;
+        //System.out.println("---> INSTANCES DE EMP: "+Emp.appels);
     }
+
     // _ _ _ MODEL Methods _ _ _
     public float computePrime(float note, float salaire){
         return note*salaire;
@@ -72,9 +72,9 @@ public class Emp {
             e2 =  new Emp(),
             e3 =  new Emp();
             
-        e.setNom("Najaina");
-        e2.setNom("Liantsoa");
-        e3.setNom("Narindra");
+        e.setNom("Lili");
+        e2.setNom("Nato");
+        e3.setNom("Miki");
         liste.add(e);
         liste.add(e2);
         liste.add(e3);
@@ -86,11 +86,21 @@ public class Emp {
     }
 
     @Urls(url = "showOneEmp")
-    public ModelView listeEmpSaisi( float salaire){
+    @Auth(profile = "nato")
+    @Session()
+    public ModelView listeEmpSaisi( @Args(argName = "salaire") float salaire){
         ModelView mv = new ModelView();
         Vector<Emp> liste = new Vector<Emp>();
         liste.add(this);
         mv.addItem("liste", liste);
+        mv.addSessionItem("cle", "valeur");
+
+        System.out.println("Contenu de la variable de session: ");
+        for (Map.Entry<String, Object> entry : this.session.entrySet()) {
+            String key = entry.getKey();
+            Object value = entry.getValue();
+            System.out.println("Clé : " + key + ", Valeur : " + value);
+        }
     
         this.setPrime(computePrime(this.note, salaire));
         
@@ -99,6 +109,7 @@ public class Emp {
         //System.out.println("Date embauche: "+ this.getEmbauche().toString());
 
         mv.setView("emp-list.jsp");
+        //System.out.println("INSTANCES DE EMP: "+Emp.appels);
         return mv;
     }
 
@@ -147,6 +158,36 @@ public class Emp {
 
     public void setPrime(float prime) {
         this.prime = prime;
+    }
+
+    public FileUpload getFile() {
+        return file;
+    }
+
+    public void setFile(@Args(argName = "file")FileUpload file) {
+        this.file = file;
+    }
+
+    public float getNote() {
+        return note;
+    }
+
+    public void setNote(float note) {
+        this.note = note;
+    }
+    public int getAppels() {
+        return appels;
+    }
+    public void setAppels(int appels) {
+        this.appels = appels;
+    }
+
+    public HashMap<String, Object> getSession() {
+        return session;
+    }
+
+    public void setSession(HashMap<String, Object> session) {
+        this.session = session;
     }
 
 }
