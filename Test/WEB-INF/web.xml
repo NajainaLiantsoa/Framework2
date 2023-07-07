@@ -10,19 +10,18 @@
     <!-- Define servlets that are included in the example application -->
 
     <servlet>
-      <servlet-name>FrontServletTest</servlet-name>
-      <servlet-class>etu1847.framework.servlet.FrontServletTest</servlet-class>
+      <servlet-name>FrontServlet</servlet-name>
+      <servlet-class>etu1847.framework.servlet.FrontServlet</servlet-class>
       <init-param>
         <param-name>context</param-name>
         <param-value>TFW</param-value>
         <description>contexte web du projet</description>
       </init-param>
-
     </servlet>
     
     <servlet-mapping>
-        <servlet-name>FrontServletTest</servlet-name>
-        <url-pattern>*.do</url-pattern>
+        <servlet-name>FrontServlet</servlet-name>
+        <url-pattern>/</url-pattern>
     </servlet-mapping>
     
     

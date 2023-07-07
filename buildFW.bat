@@ -3,7 +3,7 @@ cls
 REM compilation de FW
 cd Framework\build
 
-javac -parameters -d . ..\src\*.java
+javac -parameters -d . ..\src\Itu.java
 
 REM exportation en jar
 
