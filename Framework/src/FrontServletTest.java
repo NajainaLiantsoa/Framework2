@@ -1,7 +1,5 @@
 package etu1847.framework.servlet;
 
-import etu1847.framework.Mapping;
-import etu1847.utils.Utils;
 
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -15,30 +13,17 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-public class FrontServlet extends HttpServlet {
+public class FrontServletTest extends HttpServlet {
     
-
-    HashMap<String, Mapping> mappingUrls;   // liste des methodes annotees avec leurs classes
-                                            // <l'annotation et le Mapping correspondant>
-
-    public void init() throws ServletException {
-        try{
-            String p = "";
-            this.mappingUrls =  Utils.getUrlsAnnotedMethods(Utils.getClasses( null  , p ));
-        }catch( Exception e ){
-            e.printStackTrace();
-        }
-    }
 
     protected void processRequest(HttpServletRequest req,
     HttpServletResponse res) throws IOException, ServletException{
         try{
             PrintWriter out = res.getWriter();
             // parcour de mappingUrls et affichage du contenu
-            for(Map.Entry<String, Mapping> entry : this.mappingUrls.entrySet()){
-                out.println("Annotation: "+ entry.getKey()+"\tMethode : "+entry.getValue().getMethod()+"\tClasse: "+entry.getValue().getClassName());
-            }
-           
+            
+                out.println("TEST OK");
+                       
 
             
         }catch( Exception e ){

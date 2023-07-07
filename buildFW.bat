@@ -5,4 +5,9 @@ cd Framework\build
 
 javac -parameters -d . ..\src\*.java
 
+REM exportation en jar
+
+jar -cvf ..\..\fw.jar .
+cd ..\..\
+
 
