@@ -1,7 +1,7 @@
 package model;
 
-import etu1847.annotation.Urls;
-import etu1847.framework.ModelView;
+import etu1830.annotation.Urls;
+import etu1830.framework.ModelView;
 
 public class Etu {
     @Urls(url = "inscrire-etudiant")

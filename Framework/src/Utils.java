@@ -5,10 +5,10 @@ import java.lang.reflect.Method;
 import java.net.URL;
 import java.util.HashMap;
 import java.util.Vector;
-import etu1830.annotation.Urls;
-import etu1830.annotation.Scop;
-import etu1830.framework.Mapping;
-import etu1830.framework.ModelView;
+import etu1847.annotation.Urls;
+import etu1847.annotation.Scop;
+import etu1847.framework.Mapping;
+import etu1847.framework.ModelView;
 
 
 public class Utils {
