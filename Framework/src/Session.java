@@ -1,0 +1,8 @@
+package etu1847.annotation;
+
+import java.lang.annotation.*;
+
+
+@Retention(RetentionPolicy.RUNTIME)
+@Target(ElementType.METHOD)
+public @interface Session {}

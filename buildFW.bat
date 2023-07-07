@@ -33,4 +33,4 @@ jar -cvf ../TFW.war .
 Rem retour sur le repertoire principal
 cd ../
 REM copie vers le deploiment
-copy TFW.war C:\app\JSP\apache-tomcat-8.5.82\webapps
+copy TFW.war E:\app\JSP\apache-tomcat-8.5.82\webapps
